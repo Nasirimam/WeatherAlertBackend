@@ -8,7 +8,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const client = twilio(process.env.ACCOUNTSID, process.env.AUTHTOKEN);
+const ac = process.env.ACCOUNTSID;
+const at = process.env.AUTHTOKEN;
+
+const client = twilio(ac, at);
 
 // 🔹 API to send WhatsApp alert
 app.post("/sendAlert", async (req, res) => {
@@ -16,7 +19,7 @@ app.post("/sendAlert", async (req, res) => {
 
   try {
     const msg = await client.messages.create({
-      from: "whatsapp:+14155238886", // Twilio sandbox number
+      from: "whatsapp:+17756408102", // Twilio sandbox number
       to: `whatsapp:+91${phone}`,
       body: message,
     });
