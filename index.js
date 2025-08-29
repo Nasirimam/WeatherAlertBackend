@@ -13,8 +13,12 @@ const at = process.env.AUTHTOKEN;
 
 const client = twilio(ac, at);
 
+app.get("/",(req,res)=>{
+  res.send("Welcome To Weather Alert")
+})
+
 // 🔹 API to send WhatsApp alert
-app.post("/sendAlert", async (req, res) => {
+app.post("/sendalert", async (req, res) => {
   const { phone, message } = req.body;
 
   try {
